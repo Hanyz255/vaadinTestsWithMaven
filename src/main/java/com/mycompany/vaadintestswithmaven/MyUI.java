@@ -5,7 +5,9 @@ import javax.servlet.annotation.WebServlet;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.annotations.Widgetset;
+import com.vaadin.data.validator.NullValidator;
 import com.vaadin.server.ExternalResource;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Page;
 import com.vaadin.server.Sizeable;
 import com.vaadin.server.ThemeResource;
@@ -14,17 +16,21 @@ import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.BrowserFrame;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.Command;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.Panel;
 import com.vaadin.ui.PopupView;
 import com.vaadin.ui.ProgressBar;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.themes.Reindeer;
+import com.vaadin.ui.themes.Runo;
 
 /**
  *
@@ -36,7 +42,8 @@ public class MyUI extends UI {
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         final VerticalLayout layout = new VerticalLayout();
-        layout.setMargin(true); // Enables margins around whole component
+        layout.setMargin(true); // Enables margins around whole component (layout)
+        layout.setSpacing(true); // Enables spacing between components within the layout
         //layout.setSizeFull(); // Use entire window
         MenuBar barmenu = new MenuBar();
         layout.addComponent(barmenu);
@@ -113,9 +120,28 @@ public class MyUI extends UI {
 
         BrowserFrame browser = new BrowserFrame("Browser",
                 new ExternalResource("http://demo.vaadin.com/sampler"));
-        browser.setWidth(100, Sizeable.UNITS_PERCENTAGE);
+        browser.setWidth(100, Unit.PERCENTAGE);
         browser.setHeight("400px");
-        layout.addComponent(browser);
+        //layout.addComponent(browser); 
+
+        TextField tf1 = new TextField("Name");
+        tf1.setIcon(FontAwesome.USER);
+        tf1.setRequired(true);
+        tf1.addValidator(new NullValidator("Must be given", false));
+        layout.addComponent(tf1);
+
+        //panel
+        Panel panel = new Panel("Astronomer Panel");
+        panel.setSizeUndefined(); // Shrink to fit content
+        layout.addComponent(panel);
+        // Create the content
+        FormLayout content = new FormLayout();
+        content.addStyleName("mypanelcontent");
+        content.addComponent(new TextField("Participant"));
+        content.addComponent(new TextField("Organization"));
+        content.setSizeUndefined(); // Shrink to fit
+        content.setMargin(true);
+        panel.setContent(content);
 
     }
 
