@@ -89,16 +89,16 @@ public class MyUI extends UI {
                 new ThemeResource("icons/tea-16px.png"), null);
         hots.addItem("Coffee",
                 new ThemeResource("icons/coffee-16px.png"), null);
-// Another submenu item with a sub-submenu
+        // Another submenu item with a sub-submenu
         MenuItem colds = drinks.addItem("Cold", null, null);
         colds.addItem("Milk", null, null);
         colds.addItem("Weissbier", null, null);
-// Another top-level item
+        // Another top-level item
         MenuItem snacks = barmenu.addItem("Snacks", null, null);
         snacks.addItem("Weisswurst", null, null);
         snacks.addItem("Bratwurst", null, null);
         snacks.addItem("Currywurst", null, null);
-// Yet another top-level item
+        // Yet another top-level item
         MenuItem servs = barmenu.addItem("Services", null, null);
         servs.addItem("Car Service", null, null);
 
@@ -107,13 +107,13 @@ public class MyUI extends UI {
         VerticalLayout popupContent = new VerticalLayout();
         popupContent.addComponent(new TextField("Textfield"));
         popupContent.addComponent(new Button("Button"));
-// The component itself
+        // The component itself
         PopupView popup = new PopupView("Pop it up", popupContent);
         layout.addComponent(popup);
 
         BrowserFrame browser = new BrowserFrame("Browser",
                 new ExternalResource("http://demo.vaadin.com/sampler"));
-        browser.setWidth(80, Sizeable.UNITS_PERCENTAGE);
+        browser.setWidth(100, Sizeable.UNITS_PERCENTAGE);
         browser.setHeight("400px");
         layout.addComponent(browser);
 
