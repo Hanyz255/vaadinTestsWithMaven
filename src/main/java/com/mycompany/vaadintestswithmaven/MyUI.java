@@ -53,8 +53,10 @@ public class MyUI extends UI {
         layout.addComponent(bar);
 
         setContent(layout);
-
-        layout.addComponent(new Label("Hello!"));
+        Label lb1 = new Label("Hello!");
+        lb1.addStyleName("stylishlabel");
+        layout.addComponent(lb1);
+        layout.addComponent(lb1);
 
         final HorizontalLayout hor = new HorizontalLayout();
         hor.setSizeFull(); // Use entire window
